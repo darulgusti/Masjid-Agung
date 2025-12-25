@@ -20,7 +20,7 @@
         }
 
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
                         url('https://images.unsplash.com/photo-1590076215667-87396732739c?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -69,7 +69,7 @@
                 </div>
                 
                 <div class="hidden md:flex space-x-10 font-bold text-sm text-slate-600 uppercase tracking-widest">
-                    <a href="#beranda" class="hover:text-emerald-600 transition-colors">Beranda</a>
+                    <a href="#beranda" class="hover:text-emerald-600 transition-colors">Dashboard</a>
                     <a href="#jadwal" class="hover:text-emerald-600 transition-colors">Jadwal</a>
                     <a href="#keuangan" class="hover:text-emerald-600 transition-colors">Keuangan</a>
                     <a href="#program" class="hover:text-emerald-600 transition-colors">Program</a>
@@ -79,13 +79,16 @@
                     <a href="#donasi" class="bg-emerald-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-xl shadow-emerald-100 hover:bg-emerald-700 transition-all hover:scale-105">
                         <i class="fas fa-heart mr-2"></i> INFAQ ONLINE
                     </a>
+                    <div id="auth-area" class="relative">
+                        <button id="auth-btn" class="bg-white text-emerald-900 px-4 py-2 rounded-full font-bold text-sm border border-slate-200 hover:bg-slate-50 transition">Login</button>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="beranda" class="hero-section h-screen flex items-center relative pt-20">
+    <header id="beranda" class="hero-section min-h-screen flex items-center relative pt-16 pb-24">
         <div class="max-w-7xl mx-auto px-4 w-full">
             <div class="max-w-3xl space-y-8">
                 <div class="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-500/30 px-4 py-2 rounded-full text-emerald-400 font-bold text-xs tracking-widest uppercase">
@@ -110,7 +113,7 @@
         </div>
         
         <!-- Quick Stats Overlay -->
-        <div class="absolute bottom-10 right-0 left-0 hidden lg:block">
+        <div class="absolute bottom-0 right-0 left-0 hidden lg:block">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="grid grid-cols-4 gap-8">
                     <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-3xl text-white">
@@ -137,6 +140,19 @@
     <!-- Jadwal Salat -->
     <section id="jadwal" class="py-24 bg-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 mb-12">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-center">
+                    <div class="flex gap-2 flex-1 max-w-md">
+                        <input id="location-city" class="flex-1 border px-3 py-2 rounded" placeholder="Masukkan nama kota (misal: Jakarta)" />
+                        <button id="location-search" class="px-4 py-2 bg-emerald-600 text-white rounded font-bold">Cari</button>
+                    </div>
+                    <button id="location-auto" class="px-4 py-2 bg-white border border-emerald-300 text-emerald-600 rounded font-bold">
+                        <i class="fas fa-location-dot mr-1"></i> Lokasi Saya
+                    </button>
+                    <div id="location-display" class="text-sm text-slate-600 font-bold">Lokasi: Belum dipilih</div>
+                </div>
+            </div>
+
             <div class="text-center max-w-2xl mx-auto mb-16">
                 <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Jadwal Salat Hari Ini</h2>
                 <p class="text-slate-500 font-medium" id="tanggal-sekarang">Memuat tanggal...</p>
@@ -166,6 +182,40 @@
         </div>
     </section>
 
+    <!-- Auth Modal (hidden by default) -->
+    <div id="auth-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl w-full max-w-md p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="auth-title" class="text-xl font-extrabold">Login</h3>
+                <button id="auth-close" class="text-slate-500 hover:text-slate-700">✕</button>
+            </div>
+
+            <div id="auth-forms">
+                <form id="login-form" class="space-y-4">
+                    <input id="login-username" class="w-full border px-3 py-2 rounded" placeholder="Username" required />
+                    <input id="login-password" type="password" class="w-full border px-3 py-2 rounded" placeholder="Password" required />
+                    <div class="flex items-center justify-between">
+                        <button type="submit" class="bg-emerald-600 text-white px-4 py-2 rounded font-bold">Masuk</button>
+                        <button type="button" id="show-register" class="text-sm text-emerald-600">Buat akun</button>
+                    </div>
+                </form>
+
+                <form id="register-form" class="space-y-4 hidden">
+                    <input id="reg-username" class="w-full border px-3 py-2 rounded" placeholder="Username" required />
+                    <input id="reg-password" type="password" class="w-full border px-3 py-2 rounded" placeholder="Password" required />
+                    <select id="reg-role" class="w-full border px-3 py-2 rounded">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <div class="flex items-center justify-between">
+                        <button type="submit" class="bg-emerald-600 text-white px-4 py-2 rounded font-bold">Daftar</button>
+                        <button type="button" id="show-login" class="text-sm text-emerald-600">Sudah punya akun?</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Keuangan Transparan -->
     <section id="keuangan" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4">
@@ -184,8 +234,8 @@
                     <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
                         <i class="fas fa-wallet text-xl"></i>
                     </div>
-                    <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-1">Total Saldo Kas</p>
-                    <h3 class="text-3xl font-black text-slate-900 tracking-tight">Rp 125.450.200</h3>
+                        <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-1">Total Saldo Kas</p>
+                        <h3 id="total-saldo-kas" data-default="125450200" class="text-3xl font-black text-slate-900 tracking-tight">Rp 125.450.200</h3>
                     <div class="mt-6 pt-6 border-t border-slate-100 flex items-center justify-between">
                         <span class="text-xs font-bold text-slate-400">Periode Desember 2025</span>
                         <span class="text-xs font-bold text-emerald-600">+8.5% <i class="fas fa-caret-up"></i></span>
@@ -197,7 +247,7 @@
                         <i class="fas fa-arrow-down text-xl"></i>
                     </div>
                     <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-1">Total Pemasukan</p>
-                    <h3 class="text-3xl font-black text-emerald-600 tracking-tight">Rp 45.200.000</h3>
+                    <h3 id="total-pemasukan" data-default="45200000" class="text-3xl font-black text-emerald-600 tracking-tight">Rp 45.200.000</h3>
                     <div class="mt-6 pt-6 border-t border-slate-100">
                         <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                             <div class="bg-emerald-500 h-full w-[75%] rounded-full"></div>
@@ -210,12 +260,62 @@
                         <i class="fas fa-arrow-up text-xl"></i>
                     </div>
                     <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-1">Total Pengeluaran</p>
-                    <h3 class="text-3xl font-black text-rose-600 tracking-tight">Rp 12.750.000</h3>
+                    <h3 id="total-pengeluaran" data-default="12750000" class="text-3xl font-black text-rose-600 tracking-tight">Rp 12.750.000</h3>
                     <div class="mt-6 pt-6 border-t border-slate-100">
                         <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                             <div class="bg-rose-500 h-full w-[30%] rounded-full"></div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard (visible only to logged-in admin) -->
+    <section id="admin-dashboard" class="py-12 bg-white hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-extrabold">Admin Dashboard</h2>
+                <div class="text-sm text-slate-500">Hanya terlihat bila akun admin sudah masuk</div>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                    <div>
+                        <h3 class="font-bold mb-2">Input Dana Umat</h3>
+                        <form id="admin-transaction-form" class="space-y-3 bg-white p-4 rounded">
+                            <div class="flex flex-col md:flex-row gap-2">
+                                <input id="txn-amount" type="number" min="0" step="1000" class="flex-1 border px-3 py-2 rounded" placeholder="Jumlah (Rp)" required />
+                                <select id="txn-type" class="w-44 border px-3 py-2 rounded">
+                                    <option value="pemasukan">Pemasukan</option>
+                                    <option value="pengeluaran">Pengeluaran</option>
+                                </select>
+                                <select id="txn-created-by" class="w-56 border px-3 py-2 rounded">
+                                    <option value="admin">admin</option>
+                                </select>
+                            </div>
+                            <input id="txn-note" class="w-full border px-3 py-2 rounded" placeholder="Keterangan (opsional)" />
+                            <div class="flex items-center gap-3">
+                                <button type="submit" id="txn-save" class="px-4 py-2 bg-emerald-600 text-white rounded">Simpan</button>
+                                <button type="button" id="txn-clear" class="px-4 py-2 bg-white border rounded">Bersihkan</button>
+                                <span id="txn-mode" class="text-sm text-slate-500">(Mode: baru)</span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold mb-2">Operasi Admin</h3>
+                        <div class="flex gap-4 items-center mb-2">
+                            <button id="admin-view-users" class="px-4 py-2 bg-emerald-600 text-white rounded">Lihat Pengguna</button>
+                            <button id="admin-export" class="px-4 py-2 bg-white border rounded">Ekspor Data (CSV)</button>
+                        </div>
+                        <div id="admin-users-list" class="mt-2"></div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <h4 class="font-bold mb-2">Transaksi Terakhir</h4>
+                    <div id="admin-transactions-list" class="space-y-2"></div>
                 </div>
             </div>
         </div>
@@ -435,6 +535,37 @@
     <script src="js/utils/DateFormatter.js"></script>
     <script src="js/components/TimerComponent.js"></script>
     <script src="js/controllers/UIController.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
     <script src="js/App.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            try{
+                const adminSection = document.getElementById('admin-dashboard');
+                if(window.auth && window.auth.isAdmin && window.auth.isAdmin()){
+                    adminSection && adminSection.classList.remove('hidden');
+
+                    const viewBtn = document.getElementById('admin-view-users');
+                    const usersList = document.getElementById('admin-users-list');
+                    viewBtn && viewBtn.addEventListener('click', function(){
+                        const users = JSON.parse(localStorage.getItem('site_users_v1')||'[]');
+                        if(!users.length){ usersList.innerHTML = '<div class="p-4 bg-white rounded">Tidak ada pengguna terdaftar.</div>'; return; }
+                        usersList.innerHTML = '<ul class="space-y-2">' + users.map(u=>`<li class="p-3 border rounded">${u.username} — <strong>${u.role}</strong></li>`).join('') + '</ul>';
+                    });
+
+                    const exportBtn = document.getElementById('admin-export');
+                    exportBtn && exportBtn.addEventListener('click', function(){
+                        const users = JSON.parse(localStorage.getItem('site_users_v1')||'[]');
+                        const csv = ['username,role'].concat(users.map(u=>`${u.username},${u.role}`)).join('\n');
+                        const blob = new Blob([csv], {type:'text/csv'});
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url; a.download = 'users.csv'; document.body.appendChild(a); a.click(); a.remove();
+                    });
+                }
+            }catch(e){ console.error(e); }
+        });
+    </script>
 </body>
 </html>

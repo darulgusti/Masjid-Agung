@@ -5,17 +5,8 @@
                 
                 // Initialize UI Controller
                 this.ui = new UIController(this.prayerService);
-                
-                // Initialize Components
-                this.timer = new TimerComponent('timer', 2, 45, 10);
-            }
-
-            run() {
-                this.ui.init();
-                this.timer.start();
-                console.log("Masjid Agung App is running...");
-            }
-        }
+                // Store in global so location.js can access it
+                window.uiController = this.ui;
 
         // Jalankan aplikasi saat halaman selesai dimuat
         window.addEventListener('load', () => {

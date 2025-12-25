@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard - Masjid Agung</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-extrabold">Dashboard</h1>
+            <a href="index.html" class="text-emerald-600 font-bold">Kembali ke Beranda</a>
+        </div>
+
+        <div id="dashboard-area" class="bg-white p-8 rounded-2xl shadow">
+            <p class="mb-4">Halaman dashboard ini dapat diakses publik. Fitur admin akan muncul bila Anda masuk sebagai admin.</p>
+
+            <div id="admin-panel" class="hidden">
+                <h2 class="text-xl font-bold mb-2">Panel Admin</h2>
+                <p class="text-slate-600 mb-4">Kontrol untuk admin (hanya terlihat jika login sebagai admin).</p>
+                <div class="space-y-3">
+                    <button id="view-users" class="px-4 py-2 bg-emerald-600 text-white rounded">Lihat Pengguna</button>
+                </div>
+                <div id="users-list" class="mt-6"></div>
+            </div>
+
+            <div id="user-view" class="mt-6">
+                <h3 class="font-bold">Konten publik</h3>
+                <p class="text-slate-600">Pengunjung dan user biasa melihat halaman ini seperti biasa.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const adminPanel = document.getElementById('admin-panel');
+            const usersList = document.getElementById('users-list');
+            const viewUsersBtn = document.getElementById('view-users');
+
+            if(window.auth && window.auth.isAdmin()){
+                adminPanel.classList.remove('hidden');
+            }
+
+            viewUsersBtn && viewUsersBtn.addEventListener('click', function(){
+                const users = JSON.parse(localStorage.getItem('site_users_v1')||'[]');
+                if(!users.length){ usersList.innerHTML = '<div class="p-4 bg-slate-50 rounded">Tidak ada pengguna terdaftar.</div>'; return; }
+                usersList.innerHTML = '<ul class="space-y-2">' + users.map(u=>`<li class="p-3 border rounded">${u.username} — <strong>${u.role}</strong></li>`).join('') + '</ul>';
+            });
+        });
+    </script>
+</body>
+</html>
