@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masjid Agung - Pusat Peradaban & Dakwah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1590076215667-87396732739c?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .prayer-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .prayer-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .active-prayer {
+            background: #10b981;
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 overflow-x-hidden">
+
+    <!-- Navigasi -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <div class="bg-emerald-600 text-white p-2.5 rounded-xl shadow-lg shadow-emerald-200">
+                        <i class="fas fa-mosque fa-lg"></i>
+                    </div>
+                    <div>
+                        <span class="block font-extrabold text-xl text-emerald-900 leading-none">MASJID AGUNG</span>
+                        <span class="text-[10px] font-bold text-emerald-600 tracking-[0.2em] uppercase">Pusat Peradaban</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-10 font-bold text-sm text-slate-600 uppercase tracking-widest">
+                    <a href="#beranda" class="hover:text-emerald-600 transition-colors">Beranda</a>
+                    <a href="#jadwal" class="hover:text-emerald-600 transition-colors">Jadwal</a>
+                    <a href="#keuangan" class="hover:text-emerald-600 transition-colors">Keuangan</a>
+                    <a href="#program" class="hover:text-emerald-600 transition-colors">Program</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="#donasi" class="bg-emerald-600 text-white px-6 py-3 rounded-full font-bold text-sm shadow-xl shadow-emerald-100 hover:bg-emerald-700 transition-all hover:scale-105">
+                        <i class="fas fa-heart mr-2"></i> INFAQ ONLINE
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="beranda" class="hero-section h-screen flex items-center relative pt-20">
+        <div class="max-w-7xl mx-auto px-4 w-full">
+            <div class="max-w-3xl space-y-8">
+                <div class="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-500/30 px-4 py-2 rounded-full text-emerald-400 font-bold text-xs tracking-widest uppercase">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Menuju Kebangkitan Umat
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight">
+                    Wadah Ibadah <br>& <span class="text-emerald-400 underline decoration-4 underline-offset-8">Pemberdayaan</span>
+                </h1>
+                <p class="text-xl text-slate-200 leading-relaxed max-w-xl">
+                    Masjid Agung hadir sebagai pusat kegiatan spiritual dan sosial, menciptakan masyarakat yang harmonis, bertaqwa, dan berwawasan luas.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#program" class="bg-white text-emerald-900 px-8 py-4 rounded-2xl font-extrabold text-center hover:bg-slate-100 transition-all">
+                        EKSPLOR KEGIATAN
+                    </a>
+                    <a href="#jadwal" class="bg-transparent border-2 border-white/50 text-white px-8 py-4 rounded-2xl font-extrabold text-center hover:bg-white/10 transition-all backdrop-blur-sm">
+                        LIHAT JADWAL SALAT
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Stats Overlay -->
+        <div class="absolute bottom-10 right-0 left-0 hidden lg:block">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-4 gap-8">
+                    <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-3xl text-white">
+                        <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1">Kapasitas</p>
+                        <h3 class="text-2xl font-bold">15.000 Jamaah</h3>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-3xl text-white">
+                        <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1">Anak Asuh</p>
+                        <h3 class="text-2xl font-bold">250 Santri</h3>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-3xl text-white">
+                        <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1">Zakat Terdistribusi</p>
+                        <h3 class="text-2xl font-bold">Rp 1.2M+</h3>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-3xl text-white">
+                        <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-1">Kegiatan Rutin</p>
+                        <h3 class="text-2xl font-bold">12 Program/Pekan</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Jadwal Salat -->
+    <section id="jadwal" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Jadwal Salat Hari Ini</h2>
+                <p class="text-slate-500 font-medium" id="tanggal-sekarang">Memuat tanggal...</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-12" id="prayer-container">
+                <!-- Konten akan diisi oleh Kelas PrayerSchedule -->
+            </div>
+
+            <div class="bg-emerald-900 rounded-[2.5rem] p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center text-3xl animate-pulse">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <p class="text-emerald-300 font-bold uppercase tracking-widest text-xs mb-1">Selanjutnya</p>
+                        <h3 class="text-3xl font-black" id="nama-salat-next">Ashar</h3>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-emerald-300 font-bold uppercase tracking-widest text-xs mb-2">Menuju Waktu Salat</p>
+                    <div class="text-5xl md:text-6xl font-black font-mono tracking-tighter" id="timer">
+                        00:00:00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keuangan Transparan -->
+    <section id="keuangan" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-xl">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Transparansi Dana Umat</h2>
+                    <p class="text-slate-500 font-medium">Laporan kas masjid diperbarui secara otomatis dan dapat dipertanggungjawabkan kepada seluruh jamaah.</p>
+                </div>
+                <button class="bg-white text-slate-900 border border-slate-200 px-6 py-3 rounded-2xl font-bold flex items-center gap-2 hover:bg-slate-50 transition-all shadow-sm">
+                    <i class="fas fa-file-pdf text-rose-500"></i> UNDUH LAPORAN (PDF)
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="stat-card p-8 rounded-[2rem]">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-wallet text-xl"></i>
+                    </div>
+                    <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-1">Total Saldo Kas</p>
+                    <h3 class="text-3xl font-black text-slate-900 tracking-tight">Rp 125.450.200</h3>
+                    <div class="mt-6 pt-6 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-400">Periode Desember 2025</span>
+                        <span class="text-xs font-bold text-emerald-600">+8.5% <i class="fas fa-caret-up"></i></span>
+                    </div>
+                </div>
+
+                <div class="stat-card p-8 rounded-[2rem]">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-arrow-down text-xl"></i>
+                    </div>
+                    <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-1">Total Pemasukan</p>
+                    <h3 class="text-3xl font-black text-emerald-600 tracking-tight">Rp 45.200.000</h3>
+                    <div class="mt-6 pt-6 border-t border-slate-100">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="bg-emerald-500 h-full w-[75%] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card p-8 rounded-[2rem]">
+                    <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-arrow-up text-xl"></i>
+                    </div>
+                    <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-1">Total Pengeluaran</p>
+                    <h3 class="text-3xl font-black text-rose-600 tracking-tight">Rp 12.750.000</h3>
+                    <div class="mt-6 pt-6 border-t border-slate-100">
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="bg-rose-500 h-full w-[30%] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infaq Online Section -->
+    <section id="donasi" class="py-24 bg-emerald-800 text-white relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-1/3 h-full opacity-10 pointer-events-none">
+            <i class="fas fa-mosque text-[400px] -mr-32 mt-20"></i>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-8">
+                    <h2 class="text-4xl md:text-5xl font-black leading-tight">Berbagi Kebahagiaan, <br>Menanam Amal Jariyah</h2>
+                    <p class="text-xl text-emerald-100/80 leading-relaxed">
+                        Setiap rupiah yang Anda infaqkan melalui Masjid Agung akan disalurkan untuk pemeliharaan fasilitas ibadah dan program pemberdayaan ekonomi jamaah.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-emerald-400">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Aman & Terpercaya</h4>
+                                <p class="text-sm text-emerald-200/70">Diaudit secara berkala oleh akuntan publik.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-emerald-400">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Proses Cepat</h4>
+                                <p class="text-sm text-emerald-200/70">Konfirmasi otomatis setelah pembayaran.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-10 rounded-[3rem] shadow-2xl text-slate-900 text-center transform hover:scale-[1.02] transition-transform duration-500">
+                    <div class="inline-block bg-emerald-50 px-4 py-1 rounded-full text-emerald-600 font-bold text-[10px] tracking-widest uppercase mb-6">
+                        QRIS Resmi Masjid Agung
+                    </div>
+                    <h4 class="text-2xl font-black mb-6">Scan QRIS Untuk Infaq</h4>
+                    
+                    <div class="bg-slate-50 p-6 rounded-3xl inline-block border-4 border-emerald-600 mb-8">
+                        <div class="bg-white w-56 h-56 mx-auto rounded-xl flex flex-col items-center justify-center border-2 border-dashed border-slate-200 relative">
+                            <i class="fas fa-qrcode text-8xl text-emerald-600 mb-4 opacity-20"></i>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="bg-emerald-600 text-white p-3 rounded-xl shadow-xl">
+                                    <i class="fas fa-lock text-xl"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center items-center gap-6 opacity-60 grayscale mb-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png" alt="QRIS" class="h-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo.svg/1200px-Logo_ovo.svg.png" alt="OVO" class="h-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana.svg/1200px-Logo_dana.svg.png" alt="DANA" class="h-4">
+                    </div>
+                    
+                    <p class="text-xs text-slate-400 font-medium">Layanan ini bekerjasama dengan Bank Syariah Indonesia & Midtrans</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Kegiatan -->
+    <section id="program" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-xl">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Agenda & Program Rutin</h2>
+                    <p class="text-slate-500 font-medium">Ikuti berbagai kegiatan bermanfaat untuk meningkatkan ketaqwaan dan wawasan keislaman kita semua.</p>
+                </div>
+                <a href="#" class="text-emerald-600 font-extrabold hover:underline">LIHAT SEMUA AGENDA <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group bg-slate-50 rounded-[2rem] overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">Kajian</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-3">Tafsir Al-Qur'an: Surah Al-Kahfi</h4>
+                        <p class="text-slate-500 text-sm mb-6">Membahas hikmah dibalik kisah-kisah di dalam surah Al-Kahfi untuk pedoman hidup akhir zaman.</p>
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-200">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-400">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <span class="text-sm font-bold text-slate-700">Ust. Ahmad Ridwan</span>
+                            </div>
+                            <span class="text-[10px] font-black text-slate-400 uppercase">Setiap Selasa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-slate-50 rounded-[2rem] overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute top-4 left-4 bg-amber-500 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">Sosial</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-3">Jumat Berkah: Warung Umat</h4>
+                        <p class="text-slate-500 text-sm mb-6">Pembagian makan siang gratis untuk pejuang nafkah dan warga kurang mampu di sekitar masjid.</p>
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-200">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-400">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <span class="text-sm font-bold text-slate-700">Relawan Masjid</span>
+                            </div>
+                            <span class="text-[10px] font-black text-slate-400 uppercase">Setiap Jumat</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-slate-50 rounded-[2rem] overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574246604907-db8c7555df9a?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">Pendidikan</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-3">Tahfidz Weekend untuk Anak</h4>
+                        <p class="text-slate-500 text-sm mb-6">Program menghafal Al-Qur'an khusus anak usia SD dengan metode yang menyenangkan.</p>
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-200">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-400">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <span class="text-sm font-bold text-slate-700">Team Tahfidz</span>
+                            </div>
+                            <span class="text-[10px] font-black text-slate-400 uppercase">Sabtu - Ahad</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="bg-emerald-600 text-white p-2.5 rounded-xl">
+                            <i class="fas fa-mosque fa-lg"></i>
+                        </div>
+                        <span class="font-extrabold text-2xl tracking-tighter uppercase">MASJID AGUNG</span>
+                    </div>
+                    <p class="text-slate-400 max-w-sm mb-10 leading-relaxed">
+                        Menjadi mercusuar dakwah yang moderat, transparan, dan memberikan manfaat luas bagi kemajuan peradaban umat manusia.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-emerald-600 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-emerald-600 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-emerald-600 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-emerald-600 transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold uppercase tracking-widest text-xs mb-8 text-emerald-500">Tautan Penting</h5>
+                    <ul class="space-y-4 text-slate-400 font-medium text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Profil Masjid</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Struktur Pengurus</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Laporan ZIS</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mitra Dakwah</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="font-bold uppercase tracking-widest text-xs mb-8 text-emerald-500">Kontak Kami</h5>
+                    <ul class="space-y-4 text-slate-400 font-medium text-sm">
+                        <li class="flex gap-4">
+                            <i class="fas fa-map-marker-alt text-emerald-500"></i>
+                            <span>Jl. Raya Pusat No. 1, Kota Besar, Indonesia</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <i class="fas fa-phone text-emerald-500"></i>
+                            <span>(021) 1234-5678</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <i class="fas fa-envelope text-emerald-500"></i>
+                            <span>info@masjidagung.or.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-xs text-slate-500 font-bold uppercase tracking-widest">&copy; 2025 MASJID AGUNG. SELURUH HAK CIPTA DILINDUNGI.</p>
+                <div class="flex gap-8 text-[10px] font-black text-slate-500 tracking-[0.2em] uppercase">
+                    <a href="#" class="hover:text-emerald-500 transition-colors">Privasi</a>
+                    <a href="#" class="hover:text-emerald-500 transition-colors">Syarat</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+     <!-- Script Modular -->
+    <script src="js/services/PrayerService.js"></script>
+    <script src="js/utils/DateFormatter.js"></script>
+    <script src="js/components/TimerComponent.js"></script>
+    <script src="js/controllers/UIController.js"></script>
+    <script src="js/App.js"></script>
+</body>
+</html>

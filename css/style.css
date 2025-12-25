@@ -1,0 +1,23 @@
+@import url('[https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap)');
+
+body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('[https://images.unsplash.com/photo-1590076215667-87396732739c?auto=format&fit=crop](https://images.unsplash.com/photo-1590076215667-87396732739c?auto=format&fit=crop)');
+    background-size: cover;
+    background-position: center;
+}
+
+.prayer-card:hover { transform: translateY(-5px); transition: 0.3s; }
+
+.active-prayer {
+    background: #10b981;
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+}
